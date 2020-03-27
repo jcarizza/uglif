@@ -1,25 +1,36 @@
-if (
-    (bodyTemperature >= && dificultyBreathing) ||
-    (bodyTemperature >= && dificultyBreathing && diabetes) ||
-    (bodyTemperature >= && dificultyBreathing && cancer) ||
-    (bodyTemperature >= && dificultyBreathing && isPregnant) ||
-    (bodyTemperature >= && dificultyBreathing && isOver60YearsOld) ||
-    (bodyTemperature >= && dificultyBreathing && hepatic) ||
-    (bodyTemperature >= && dificultyBreathing && kidneyDisease) ||
-    (bodyTemperature >= && dificultyBreathing && respiratoryDisease) ||
-    (bodyTemperature >= && diabetes) ||
-    (bodyTemperature >= && cancer) ||
-    (bodyTemperature >= && isPregnant) ||
-    (bodyTemperature >= && isOver60YearsOld) ||
-    (bodyTemperature >= && hepatic) ||
-    (bodyTemperature >= && kidneyDisease) ||
-    (bodyTemperature >= && respiratoryDisease) ||
-) {
-    console.log('foo')
-} else if (bodyTemperature => 38) {
-    console.log('faa')
-} else if (bodyTemperature < 38) {
-    console.log('bar')
+/**
+* Si tiene más de 38 grados y algún síntoma va a diagnóstico,
+* si tiene más de 38 grados sin síntomas va a cuarentena
+* y si tiene menos de 38 grados #quedatencasa
+*/
+
+if (bodyTemperature >= 38 &&
+    (
+        (dificultyBreathing ||
+            (
+                dificultyBreathing && (
+                    diabetes ||
+                    cancer ||
+                    isPregnant ||
+                    isOver60YearsOld ||
+                    hepatic ||
+                    kidneyDisease ||
+                    respiratoryDisease
+                )
+            )
+        ) || (
+            diabetes ||
+            cancer ||
+            isPregnant ||
+            isOver60YearsOld ||
+            hepatic ||
+            kidneyDisease ||
+            respiratoryDisease
+        )
+    )) {
+    alert('Diagnostico');
+} else if (bodyTemperature >= 38) {
+    alert('Cuarentena');
 } else {
-    console.log('lalala')
+    alert('Buen estado');
 }
